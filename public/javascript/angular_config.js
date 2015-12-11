@@ -1,0 +1,12 @@
+var app = angular.module('homestory', ['ui.router']);
+
+app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider){
+
+  $urlRouterProvider.otherwise("/");
+
+  $stateProvider
+    .state('landing', {
+      url: "/",
+      templateUrl: "/templates/static_pages/landing.html"
+    })
+}]);
