@@ -40,12 +40,31 @@ router.get('/designs/:id', function(req, res, next){
 });
 
 // design - create
-
 router.post('/designs', function(req, res, next){
   var designParams = req.body.design;
 
   Design.create(designParams, function(err, design){
     if (err) res.json({message: err})
       res.json({design : design})
+  })
+});
+
+// design - edit
+router.put('/designs/:id', function(req, res, next){
+  var designId = req.params.id;
+
+  Design.findById(designId, function(err, design){
+    var reqDesign = req.body.design;
+
+    if (err) res.status(400).json({message : err});
+    if (reqDesign.property_name)      design.property_name = reqDesign.property_name;
+    if (reqDesign.apartment_size)     design.apartment_size = reqDesign.apartment_size;
+    if (reqDesign.description)        design.description = reqDesign.description;
+    if (reqDesign.budget)             design.budget = reqDesign.budget;
+
+    design.save(function(err){
+      if (err) res.status(400).json({message: err});
+      res.status(200).json({design : design});
+    })
   })
 });
