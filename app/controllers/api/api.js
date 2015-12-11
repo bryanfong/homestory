@@ -68,3 +68,16 @@ router.put('/designs/:id', function(req, res, next){
     })
   })
 });
+
+// design - destroy
+router.delete('/designs/:id', function(req, res, next){
+  var designId = req.params.id;
+
+  Design.findById(designId, function(err,design){
+    if (err) res.status(400).json({message : err});
+    design.remove(function(err){
+      if (err) res.json({message: err})
+      res.status(200).json({message: "Design has been removed"});
+    });
+  })
+});
