@@ -30,6 +30,16 @@ router.get('/designs', function(req, res, next){
   })
 });
 
+// design - search
+router.post('/designs/search', function(req, res, next){
+  var designParams = req.body;
+  console.log(req.body);
+  Design.find(designParams, function(err, designs){
+    if (err) res.json({message : err})
+    res.json(designs);
+  })
+});
+
 // design - show
 router.get('/designs/:id', function(req, res, next){
   var designId = req.params.id;
