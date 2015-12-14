@@ -24,14 +24,16 @@ router.post("/signin", function (req, res, next) {
   });
 });
 
+// SIGN-OUT
 router.get("/signout", function (req, res, next){
   req.logout();
-  res.redirect("/");
+  res.json({message: "Signup successfully"})//;
+  // res.redirect("/");
 });
 
-router.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email'} ));
+// router.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email'} ));
 
-router.get('/auth/facebook/callback', passport.authenticate('facebook', {
-  successRedirect: '/',
-  failureRedirect: '/'
-}));
+// router.get('/auth/facebook/callback', passport.authenticate('facebook', {
+//   successRedirect: '/',
+//   failureRedirect: '/'
+// }));

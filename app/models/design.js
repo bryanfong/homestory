@@ -6,6 +6,7 @@ var DesignSchema = new Schema({
   apartment_size: { type: String },
   description: { type: String },
   budget: { type: String } //,
+  // image_url: { type: String } //,
   // createdBy:   { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
