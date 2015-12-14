@@ -1,7 +1,10 @@
 <h1>this is angular</h1>
 
+
+
 <ul ng-controller = "DesignsController">
   <li ng-repeat = "design in all">
-    <strong>{{design.property_name}}</strong>
+    <img src="{{design.image_url}}">
+    <strong>{{design.property_name}} - {{design.apartment_size}}</strong>
   </li>
 </ul>

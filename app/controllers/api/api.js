@@ -61,6 +61,7 @@ router.put('/designs/:id', function(req, res, next){
     if (reqDesign.apartment_size)     design.apartment_size = reqDesign.apartment_size;
     if (reqDesign.description)        design.description = reqDesign.description;
     if (reqDesign.budget)             design.budget = reqDesign.budget;
+    if (reqDesign.image_url)             design.image_url = reqDesign.image_url;
 
     design.save(function(err){
       if (err) res.status(400).json({message: err});
