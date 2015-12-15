@@ -9,4 +9,11 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
       url: "/",
       templateUrl: "/templates/static_pages/landing.html"
     })
+    .state('result', {
+      url: "/result",
+      templateUrl: "/templates/designs/result.html",
+      params: {
+        searchResults: { array: true }
+      }
+    })
 }]);

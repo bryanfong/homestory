@@ -1,19 +1,16 @@
 angular.module('homestory')
 .controller('DesignsController', DesignsController);
 
-DesignsController.$inject = ['$http', '$scope'];
+DesignsController.$inject = ['$http', '$scope', '$state', '$stateParams'];
 
-function DesignsController($http, $scope){
+function DesignsController($http, $scope, $state, $stateParams){
   $scope.all = [];
   // $scope.addDesign = addDesign;
   // $scope.newDesign = {};
-  // $scope.searchParams = {};
-  $scope.getDesigns = getDesigns;
-  $scope.searchDesigns = searchDesigns;
-  // $scope.deleteDesign = deleteDesign;
+  $scope.searchResults = $stateParams.searchResults;
+  $scope.searchParams = {};
 
-  getDesigns();
-  function getDesigns(){
+  $scope.getDesigns = function (){
     $http
       .get('http://localhost:3000/api/designs')
       .then(function(response){
@@ -21,12 +18,26 @@ function DesignsController($http, $scope){
       })
   }
 
-  function searchDesigns(){
+  $scope.getDesigns();
+
+  $scope.searchDesigns = function(){
+    console.log('$scope.searchParams');
     console.log($scope.searchParams);
-    $http.post('http://localhost:3000/api/designs/search', $scope.searchParams)
+
+    $http
+      .post('http://localhost:3000/api/designs/search', $scope.searchParams)
       .success(function(data){
-        console.log(data)
+        $state.transitionTo('result', {searchResults: data});
       })
   }
+
+  // function getOneDesign(){
+  //   $http
+  //     .get('http://localhost:3000/api/designs')
+  //     .success(function(data){
+  //       $location.path('/result');
+  //       $scope.searchResults = data;
+  //     })
+  // }
 
 }
