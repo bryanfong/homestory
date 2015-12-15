@@ -16,4 +16,8 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
         searchResults: { array: true }
       }
     })
+    .state('show', {
+      url: "/designs/:id",
+      templateUrl: "/templates/designs/show.html"
+    })
 }]);

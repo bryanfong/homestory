@@ -27,17 +27,20 @@ function DesignsController($http, $scope, $state, $stateParams){
     $http
       .post('http://localhost:3000/api/designs/search', $scope.searchParams)
       .success(function(data){
-        $state.transitionTo('result', {searchResults: data});
+        $state.go('result', {searchResults: data});
       })
   }
 
-  // function getOneDesign(){
-  //   $http
-  //     .get('http://localhost:3000/api/designs')
-  //     .success(function(data){
-  //       $location.path('/result');
-  //       $scope.searchResults = data;
-  //     })
-  // }
+  $scope.getOneDesign = function(){
+    console.log("stateParams.id");
+    console.log($stateParams.id);
+
+    $http
+      .get('http://localhost:3000/api/designs/'+ $stateParams.id)
+      .success(function(response){
+        console.log(response);
+        $scope.design = response
+      })
+  }
 
 }
