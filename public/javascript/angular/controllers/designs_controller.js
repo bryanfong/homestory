@@ -11,47 +11,68 @@ function DesignsController($http, $scope, $state, $stateParams){
   }
 
   $scope.getDesigns = function (){
-    $http.get('http://localhost:3000/api/designs').then(function(response){
+    $http.get('/api/designs').then(function(response){
       $scope.all = response.data;
     });
   };
 
   $scope.searchDesigns = function(){
-    $http.post('http://localhost:3000/api/designs/search', $scope.searchParams).then(function(response){
+    $http.post('/api/designs/search', $scope.searchParams).then(function(response){
       console.log(response);
       $scope.searchResults = response.data;
     });
   };
 
   $scope.getOneDesign = function(){
-    $http.get('http://localhost:3000/api/designs/'+ $stateParams.id).then(function(response){
+    $http.get('/api/designs/'+ $stateParams.id).then(function(response){
       console.log(response);
       $scope.design = response.data;
     });
   };
 
   $scope.bookmarkDesign = function(){
-    $http.post('http://localhost:3000/api/bookmarks', {bookmark: {design_id: $stateParams.id}}).then(function(response){
+    $http.post('/api/bookmarks', {bookmark: {design_id: $stateParams.id}}).then(function(response){
       console.log(response);
     }, function(response) {
       console.log(response);
     });
   };
 
+
+  $scope.addDesign = function(){
+    $http
+      .post('/api/designs', {design: $scope.newDesign})
+      .then(function(response){
+        // $scope.getDesigns();
+        console.log(response.data._id);
+      });
+    window.location.href = '/show/'+ $scope.newDesignId;
+  };
+
   // init my variables
   $scope.all = [];
+  $scope.newDesign = {};
+  $scope.newDesignId = '';
 
-  if ($state.current.name == "landing") { // landing
+  // landing
+  if ($state.current.name == "landing") {
     $scope.searchParams = {};
     $scope.getDesigns();
-  } else if ($state.current.name == "result") { // result
+  }
+
+  // result
+  if ($state.current.name == "result") {
     $scope.searchParams = window.JSON.parse(window.localStorage.getItem("searchParams") + '')
+
     if ($scope.searchParams) {
       $scope.searchDesigns();
     } else {
       $state.go('landing');
     }
-  } else { // show
+  }
+
+  // show
+  if ($state.current.name == "show") {
     $scope.getOneDesign();
   }
 }

@@ -52,6 +52,9 @@ router.get('/designs/:id', function(req, res, next){
 // design - create
 router.post('/designs', function(req, res, next){
   var designParams = req.body.design;
+
+  console.log(req.body.design);
+
   Design.create(designParams, function(err, design){
     if (err) return res.status(400).json({message: err})
     return res.status(200).json(design)
