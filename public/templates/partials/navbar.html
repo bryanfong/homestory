@@ -12,6 +12,7 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
+        <li ng-hide="current_user"><a href="/#/signup">Sign up</a></li>
         <li ng-hide="current_user"><a href="/#/signin">Log in</a></li>
         <li ng-show="current_user"><a ng-click="logout()">Log out</a></li>
       </ul>
