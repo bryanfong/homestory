@@ -1,4 +1,4 @@
-var app = angular.module('homestory', ['ui.router']);
+var app = angular.module('homestory', ['ui.router', 'ngResource']);
 
 app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider){
 
@@ -19,5 +19,15 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
     .state('show', {
       url: "/designs/:id",
       templateUrl: "/templates/designs/show.html"
+    })
+    .state('signup', {
+      url: '/signup' ,
+      templateUrl: '/templates/signup/index.html',
+      controller: 'SignupCtrl'
+    })
+    .state('signin', {
+      url: '/signin',
+      templateUrl: '/templates/signin/index.html',
+      controller: 'SigninCtrl'
     })
 }]);

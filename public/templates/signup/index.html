@@ -1,0 +1,14 @@
+<h1>Sign up</h1>
+
+<form ng-submit="submit()" class="form-block" ng-init="sigupForm = {}">
+  <div class="form-group">
+    <label class="sr-only">Email address</label>
+    <input type="email" class="form-control" placeholder="Email" ng-model="signupForm.email">
+  </div>
+  <div class="form-group">
+    <label class="sr-only">Password</label>
+    <input type="password" class="form-control" placeholder="Password" ng-model="signupForm.password">
+  </div>
+
+  <button type="submit" class="btn btn-default">Sign up</button>
+</form>

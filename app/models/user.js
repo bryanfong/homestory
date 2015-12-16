@@ -4,7 +4,7 @@ var Schema   = mongoose.Schema;
 
 var UserSchema = new Schema({
   local: {
-    name:     { type: String },
+    full_name:     { type: String },
     email:    { type: String },
     password: { type: String }
   },
@@ -16,13 +16,6 @@ var UserSchema = new Schema({
     email: String
   }
 });
-
-// Example of virtual attribute in model
-//
-// UserSchema.virtual('date')
-//   .get(function(){
-//     return this._id.getTimestamp();
-//   });
 
 UserSchema.methods.encrypt = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
