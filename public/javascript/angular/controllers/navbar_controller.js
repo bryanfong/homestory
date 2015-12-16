@@ -1,7 +1,7 @@
 app.controller('NavbarCtrl', ['CurrentUser', '$scope', '$http', '$resource', '$state', function (CurrentUser, $scope, $http, $resource, $state){
   $scope.validateUser = function () {
     $http({
-      url: "http://localhost:3000/validate",
+      url: "/validate",
       method: "GET",
     }).then(function(response){
       console.log(response);
@@ -14,7 +14,7 @@ app.controller('NavbarCtrl', ['CurrentUser', '$scope', '$http', '$resource', '$s
 
   $scope.logout = function () {
     $http({
-      url: "http://localhost:3000/signout",
+      url: "/signout",
       method: "DELETE"
     }).then(function(response){
       console.log(response);

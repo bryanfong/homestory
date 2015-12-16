@@ -2,7 +2,7 @@ app.controller('SigninCtrl', ['CurrentUser', '$scope', '$http', '$state',  funct
   $scope.submit = function () {
     $http({
       method: "POST",
-      url: "http://localhost:3000/signin",
+      url: "/signin",
       data: $scope.signinForm
     }).then(function (response){
       console.log(response);

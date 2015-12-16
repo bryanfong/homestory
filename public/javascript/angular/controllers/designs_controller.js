@@ -44,15 +44,14 @@ function DesignsController($http, $scope, $state, $stateParams){
       .post('/api/designs', {design: $scope.newDesign})
       .then(function(response){
         // $scope.getDesigns();
-        console.log(response.data._id);
+        console.log(response.data._id );
+        $state.go('show', {id: response.data._id});
       });
-    window.location.href = '/show/'+ $scope.newDesignId;
   };
 
   // init my variables
   $scope.all = [];
   $scope.newDesign = {};
-  $scope.newDesignId = '';
 
   // landing
   if ($state.current.name == "landing") {
