@@ -17,8 +17,7 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
     })
     .state('show', {
       url: "/designs/:id",
-      templateUrl: "/templates/designs/show.html",
-      controller: 'DesignsController'
+      templateUrl: "/templates/designs/show.html"
     })
     .state('bookmarks', {
       url: '/bookmarks',

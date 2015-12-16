@@ -132,10 +132,10 @@ router.delete('/bookmarks/:id', function(req, res, next){
   })
 })
 
+
 // Comment - index
 router.get('/comments', function(req, res){
-  var currentUserId = req.user._id;
-  Comment.find({user_id: currentUserId}, function(err, comments){
+  Comment.find({}, function(err, comments){
     if (err) return res.status(400).json({message : err})
     return res.status(200).json(comments)
   }).populate("design_id")
@@ -146,12 +146,10 @@ router.post('/comments', function(req, res){
   var currentUserId = req.user._id;
   var params = req.body.comment;
   params.user_id = currentUserId;
-
   Comment.create(params, function (err, comment){
       if (err) return res.status(400).json({message : err})
       return res.status(200).json(comment)
   })
-
 });
 
 // Comment - delete
