@@ -1,0 +1,17 @@
+<nav-bar></nav-bar>
+<h3>My Favorites</h3>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-md-4" ng-repeat="bookmark in all" >
+      <div class="thumbnail">
+        <img ng-src="{{bookmark.design_id.image_url}}">
+        <div class="caption">
+          <h3>{{bookmark.design_id.property_name}}</h3>
+          <p>{{bookmark.design_id.description}}</p>
+          <p><a href="#/bookmarks/{{bookmark.design_id_id}}" class="btn btn-default">More Details</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

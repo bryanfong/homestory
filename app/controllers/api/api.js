@@ -121,3 +121,37 @@ router.post('/bookmarks', function(req, res){
     }
   })
 });
+
+// Bookmark - show ------!NOT WORKING
+router.post('/api/bookmarks/id', function(req, res){
+  var currentUserId = req.user._id;
+  var params = req.body.bookmark
+  params.user_id = currentUserId
+
+  Bookmark.findOne(params, function (err, bookmark){
+    if (err) return res.json({message : err})
+    if (bookmark){
+      res.status(200).json({message: "Found"})
+    } else {
+      res.status(200).json({message: "Not Found"})
+    }
+  })
+});
+
+// Bookmark - delete  ------!NOT WORKING
+router.delete('/api/bookmarks/id', function(req, res, next){
+  var currentUserId = req.user._id;
+  var params = req.body.bookmark
+  params.user_id = currentUserId
+
+  Bookmark.findOneAndRemove(params, function (err, bookmark){
+    if (err) return res.json({message : err})
+    if (bookmark) {
+      res.status(200).json({message: "Bookmark Deleted"});
+    } else {
+      res.status(404).json({message: "Bookmark not found"});
+    }
+  })
+})
+
+

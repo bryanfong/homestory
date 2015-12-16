@@ -1,4 +1,4 @@
-angular.module('homestory')
+app
 .controller('DesignsController', DesignsController);
 
 DesignsController.$inject = ['$http', '$scope', '$state', '$stateParams'];

@@ -7,18 +7,21 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
   $stateProvider
     .state('landing', {
       url: "/",
-      templateUrl: "/templates/static_pages/landing.html"
+      templateUrl: "/templates/static_pages/landing.html",
+      controller: 'DesignsController'
     })
     .state('result', {
       url: "/result",
       templateUrl: "/templates/designs/result.html",
+      controller: 'DesignsController',
       params: {
         searchResults: { array: true }
       }
     })
     .state('show', {
       url: "/designs/:id",
-      templateUrl: "/templates/designs/show.html"
+      templateUrl: "/templates/designs/show.html",
+      controller: 'DesignsController'
     })
     .state('signup', {
       url: '/signup' ,
@@ -29,5 +32,10 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
       url: '/signin',
       templateUrl: '/templates/signin/index.html',
       controller: 'SigninCtrl'
+    })
+    .state('bookmarks', {
+      url: '/bookmarks',
+      templateUrl: '/templates/bookmarks/index.html',
+      controller: 'BookmarksController'
     })
 }]);
