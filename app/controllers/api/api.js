@@ -2,6 +2,7 @@ var express  = require('express');
 var router   = express.Router();
 var mongoose = require('mongoose');
 var Design = require('../../models/design');
+var Bookmark = require('../../models/bookmark');
 
 
 module.exports = function (app) {
@@ -90,5 +91,33 @@ router.delete('/designs/:id', function(req, res, next){
       if (err) res.json({message: err})
       res.status(200).json({message: "Design has been removed"});
     });
+  })
+});
+
+// Bookmark - index
+router.get('/bookmarks', function(req, res){
+  var currentUserId = req.user._id;
+  Bookmark.find({user_id: currentUserId}, function(err, bookmarks){
+    if (err) return res.json({message : err})
+    res.json(bookmarks)
+  }).populate("design_id")
+});
+
+// Bookmark - post
+router.post('/bookmarks', function(req, res){
+  var currentUserId = req.user._id;
+  var params = req.body.bookmark
+  params.user_id = currentUserId
+
+  Bookmark.findOne(params, function (err, bookmark){
+    if (err) return res.json({message : err})
+    if (bookmark){
+      return res.status(400).json({message: "You already bookmark"});
+    } else {
+      Bookmark.create(params, function (err, bookmark){
+        if (err) return res.json({message : err})
+        res.json({bookmark: bookmark})
+      })
+    }
   })
 });

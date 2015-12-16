@@ -32,13 +32,13 @@ function DesignsController($http, $scope, $state, $stateParams){
   }
 
   $scope.getOneDesign = function(){
-    console.log("stateParams.id");
-    console.log($stateParams.id);
+    // console.log("stateParams.id");
+    // console.log($stateParams.id);
 
     $http
       .get('http://localhost:3000/api/designs/'+ $stateParams.id)
       .success(function(response){
-        console.log(response);
+        // console.log(response);
         $scope.design = response
       })
   }
