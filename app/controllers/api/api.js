@@ -4,7 +4,6 @@ var mongoose = require('mongoose');
 var Design = require('../../models/design');
 var Bookmark = require('../../models/bookmark');
 
-
 module.exports = function (app) {
   app.use('/api', router);
 };
@@ -15,29 +14,28 @@ function authenticatedUser(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   } else {
-    return res.json({message: "Please Login"});
+    return res.status(404).json({message: "Please Login"});
   }
 }
 
 router.get('/secret', authenticatedUser, function (req, res, next) {
-  res.json({message: "secret"});
+  res.status(200).json({message: "secret"});
 });
 
 // design - index
 router.get('/designs', function(req, res, next){
   Design.find({}, function(err, designs){
-    if (err) res.json({message : err})
-    res.json(designs);
+    if (err) return res.status(400).json({message : err})
+    return res.status(200).json(designs);
   })
 });
 
 // design - search
 router.post('/designs/search', function(req, res, next){
   var designParams = req.body;
-  console.log(req.body);
   Design.find(designParams, function(err, designs){
-    if (err) res.json({message : err})
-    res.json(designs);
+    if (err) return res.status(400).json({message : err})
+    return res.status(200).json(designs);
   })
 });
 
@@ -45,18 +43,17 @@ router.post('/designs/search', function(req, res, next){
 router.get('/designs/:id', function(req, res, next){
   var designId = req.params.id;
   Design.findById(designId, function(err, design){
-    if (err) res.json({message : err})
-      res.json(design);
+    if (err) return res.status(400).json({message : err})
+    return res.status(200).json(design);
   })
 });
 
 // design - create
 router.post('/designs', function(req, res, next){
   var designParams = req.body.design;
-
   Design.create(designParams, function(err, design){
-    if (err) res.json({message: err})
-      res.json({design : design})
+    if (err) return res.status(400).json({message: err})
+    return res.status(200).json(design)
   })
 });
 
@@ -66,17 +63,16 @@ router.put('/designs/:id', function(req, res, next){
 
   Design.findById(designId, function(err, design){
     var reqDesign = req.body.design;
-
     if (err) res.status(400).json({message : err});
     if (reqDesign.property_name)      design.property_name = reqDesign.property_name;
     if (reqDesign.apartment_size)     design.apartment_size = reqDesign.apartment_size;
     if (reqDesign.description)        design.description = reqDesign.description;
     if (reqDesign.budget)             design.budget = reqDesign.budget;
-    if (reqDesign.image_url)             design.image_url = reqDesign.image_url;
+    if (reqDesign.image_url)          design.image_url = reqDesign.image_url;
 
     design.save(function(err){
-      if (err) res.status(400).json({message: err});
-      res.status(200).json({design : design});
+      if (err) return res.status(400).json({message: err});
+      return res.status(200).json(design);
     })
   })
 });
@@ -86,10 +82,10 @@ router.delete('/designs/:id', function(req, res, next){
   var designId = req.params.id;
 
   Design.findById(designId, function(err,design){
-    if (err) res.status(400).json({message : err});
+    if (err) return res.status(400).json({message : err});
     design.remove(function(err){
-      if (err) res.json({message: err})
-      res.status(200).json({message: "Design has been removed"});
+      if (err) res.status(400).json({message: err})
+      return res.status(200).json({message: "Design has been removed"});
     });
   })
 });
@@ -98,8 +94,8 @@ router.delete('/designs/:id', function(req, res, next){
 router.get('/bookmarks', function(req, res){
   var currentUserId = req.user._id;
   Bookmark.find({user_id: currentUserId}, function(err, bookmarks){
-    if (err) return res.json({message : err})
-    res.json(bookmarks)
+    if (err) return res.status(400).json({message : err})
+    return res.status(200).json(bookmarks)
   }).populate("design_id")
 });
 
@@ -110,47 +106,28 @@ router.post('/bookmarks', function(req, res){
   params.user_id = currentUserId
 
   Bookmark.findOne(params, function (err, bookmark){
-    if (err) return res.json({message : err})
+    if (err) return res.status(400).json({message : err})
     if (bookmark){
       return res.status(400).json({message: "You already bookmark"});
     } else {
       Bookmark.create(params, function (err, bookmark){
-        if (err) return res.json({message : err})
-        res.json({bookmark: bookmark})
+        if (err) return res.status(400).json({message : err})
+        return res.status(200).json(bookmark)
       })
     }
   })
 });
 
-// Bookmark - show ------!NOT WORKING
-router.post('/api/bookmarks/id', function(req, res){
-  var currentUserId = req.user._id;
-  var params = req.body.bookmark
-  params.user_id = currentUserId
+// Bookmark - delete
+router.delete('/bookmarks/:id', function(req, res, next){
+  var bookmarkId = req.params.id;
 
-  Bookmark.findOne(params, function (err, bookmark){
-    if (err) return res.json({message : err})
-    if (bookmark){
-      res.status(200).json({message: "Found"})
-    } else {
-      res.status(200).json({message: "Not Found"})
-    }
-  })
-});
-
-// Bookmark - delete  ------!NOT WORKING
-router.delete('/api/bookmarks/id', function(req, res, next){
-  var currentUserId = req.user._id;
-  var params = req.body.bookmark
-  params.user_id = currentUserId
-
-  Bookmark.findOneAndRemove(params, function (err, bookmark){
-    if (err) return res.json({message : err})
-    if (bookmark) {
-      res.status(200).json({message: "Bookmark Deleted"});
-    } else {
-      res.status(404).json({message: "Bookmark not found"});
-    }
+  Bookmark.findById(bookmarkId, function(err,bookmark){
+    if (err) return res.status(400).json({message : err});
+    bookmark.remove(function(err){
+      if (err) res.status(400).json({message: err})
+      return res.status(200).json({message: "Bookmark has been removed"});
+    });
   })
 })
 

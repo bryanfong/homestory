@@ -1,6 +1,5 @@
 <nav-bar></nav-bar>
 
-
 <div class = "container" ui-view>
   <div class = "row">
 
@@ -38,26 +37,26 @@
 
     <!-- Search Form -->
     <h3>Find design idea for your home</h3>
-    <form>
-        <fieldset class="form-group">
-          <label for="appartment_size">Apartment Size (Square Feet)</label>
-          <select class="form-control" ng-model="searchParams.apartment_size">
-            <option ng-repeat = "design in all">{{design.apartment_size}}</option>
-          </select>
-        </fieldset>
-                <fieldset class="form-group" >
-          <label for="property_name">Property Name</label>
-          <select class="form-control" ng-model="searchParams.property_name">
-            <option ng-repeat="design in all">{{design.property_name}}</option>
-          </select>
-        </fieldset>
-        <fieldset class="form-group" >
-          <label for="budget">Budget</label>
-          <select class="form-control" ng-model="searchParams.budget">
-            <option ng-repeat = "design in all">{{design.budget}}</option>
-          </select>
-        </fieldset>
-        <button type="submit" class="btn btn-primary" ng-click= 'searchDesigns()'>Search</button>
+    <form ng-submit= 'goToSearch()'>
+      <fieldset class="form-group">
+        <label for="appartment_size">Apartment Size (Square Feet)</label>
+        <select class="form-control" ng-model="searchParams.apartment_size">
+          <option ng-repeat = "design in all">{{design.apartment_size}}</option>
+        </select>
+      </fieldset>
+      <fieldset class="form-group" >
+        <label for="property_name">Property Name</label>
+        <select class="form-control" ng-model="searchParams.property_name">
+          <option ng-repeat="design in all">{{design.property_name}}</option>
+        </select>
+      </fieldset>
+      <fieldset class="form-group" >
+        <label for="budget">Budget</label>
+        <select class="form-control" ng-model="searchParams.budget">
+          <option ng-repeat = "design in all">{{design.budget}}</option>
+        </select>
+      </fieldset>
+      <button type="submit" class="btn btn-primary">Search</button>
     </form>
 
   </div>

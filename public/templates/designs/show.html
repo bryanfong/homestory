@@ -3,14 +3,14 @@
 <h1>This page is show</h1>
 
 <div class="container">
-  <div class="row" ng-init="getOneDesign()">
+  <div class="row">
     <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
         <img ng-src="{{design.image_url}}">
         <div class="caption">
           <h3>The Story</h3>
           <p>{{design.description}}</p>
-          <button class="btn btn-primary">Save Design</button>
+          <button class="btn btn-primary" ng-click="bookmarkDesign()">Save Design</button>
         </div>
       </div>
     </div>
@@ -44,11 +44,11 @@
     <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
         <form>
-            <fieldset class="form-group">
-              <label for="comment">Your Comment</label>
-              <textarea class="form-control" rows="3"></textarea>
-            </fieldset>
-            <button type="submit" class="btn btn-primary">Submit</button>
+          <fieldset class="form-group">
+            <label for="comment">Your Comment</label>
+            <textarea class="form-control" rows="3"></textarea>
+          </fieldset>
+          <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </div>
     </div>

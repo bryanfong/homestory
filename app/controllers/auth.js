@@ -8,6 +8,15 @@ module.exports = function (app) {
   app.use('/', router);
 };
 
+// try to validate user and return user object
+router.get('/validate', function (req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.status(200).json(req.user);
+  } else {
+    return res.status(404).json({message: "Please Login"});
+  }
+})
+
 // SIGN-UP: Create a new User
 router.post('/signup', function (req, res, next) {
   passport.authenticate('local-signup', function (err, user, info) {
@@ -41,7 +50,13 @@ router.delete("/signout", function (req, res, next){
 
 router.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email'} ));
 
-router.get('/auth/facebook/callback', passport.authenticate('facebook', {
-  successRedirect: '/',
-  failureRedirect: '/'
-}));
+router.get('/auth/facebook/callback', function (req, res, next) {
+  passport.authenticate('facebook', function (err, user, info) {
+    if (err) { return next(err); }
+    if (!user) { return res.status(404).json(info); }
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      return res.json(user);
+    });
+  })(req, res, next);
+})

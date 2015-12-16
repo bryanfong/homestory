@@ -13,15 +13,17 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
     .state('result', {
       url: "/result",
       templateUrl: "/templates/designs/result.html",
-      controller: 'DesignsController',
-      params: {
-        searchResults: { array: true }
-      }
+      controller: 'DesignsController'
     })
     .state('show', {
       url: "/designs/:id",
       templateUrl: "/templates/designs/show.html",
       controller: 'DesignsController'
+    })
+    .state('bookmarks', {
+      url: '/bookmarks',
+      templateUrl: '/templates/bookmarks/index.html',
+      controller: 'BookmarksController'
     })
     .state('signup', {
       url: '/signup' ,
@@ -32,10 +34,5 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
       url: '/signin',
       templateUrl: '/templates/signin/index.html',
       controller: 'SigninCtrl'
-    })
-    .state('bookmarks', {
-      url: '/bookmarks',
-      templateUrl: '/templates/bookmarks/index.html',
-      controller: 'BookmarksController'
-    })
+    });
 }]);
