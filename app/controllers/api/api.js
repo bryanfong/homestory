@@ -132,10 +132,18 @@ router.delete('/bookmarks/:id', function(req, res, next){
   })
 })
 
-
 // Comment - index
-router.get('/comments', function(req, res){
+router.get('/comments/', function(req, res){
   Comment.find({}, function(err, comments){
+    if (err) return res.status(400).json({message : err})
+    return res.status(200).json(comments)
+  }).populate("design_id")
+});
+
+// Comment - show
+router.get('/comments/:id', function(req, res){
+  var designId = req.params.id;
+  Comment.find({design_id: designId}, function(err, comments){
     if (err) return res.status(400).json({message : err})
     return res.status(200).json(comments)
   }).populate("design_id")

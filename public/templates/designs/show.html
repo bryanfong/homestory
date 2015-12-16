@@ -39,6 +39,17 @@
   </div>
 </div> -->
 
+<div class="container" ng-controller='CommentsController'>
+  <div class="row">
+    <div class="col-sm-6 col-md-4" ng-repeat="comment in all" >
+      <div class="thumbnail">
+        <p>{{comment.comment}}</p>
+        <p>{{comment.user_id}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container" ng-show="current_user">
   <div  class="row">
     <div class="col-sm-6 col-md-4">
@@ -55,7 +66,5 @@
   </div>
 </div>
 
-<!-- <div ng-controller='CommentsController'>
 
-</div> -->
 
