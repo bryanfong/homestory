@@ -146,7 +146,7 @@ router.get('/comments/:id', function(req, res){
   Comment.find({design_id: designId}, function(err, comments){
     if (err) return res.status(400).json({message : err})
     return res.status(200).json(comments)
-  }).populate("design_id")
+  }).populate("design_id").populate("user_id")
 });
 
 // Comment - post

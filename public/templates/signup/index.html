@@ -4,6 +4,10 @@
 
 <form ng-submit="submit()" class="form-block" ng-init="sigupForm = {}">
   <div class="form-group">
+    <label class="sr-only">Username</label>
+    <input type="username" class="form-control" placeholder="Username" ng-model="signupForm.username">
+  </div>
+  <div class="form-group">
     <label class="sr-only">Email address</label>
     <input type="email" class="form-control" placeholder="Email" ng-model="signupForm.email">
   </div>

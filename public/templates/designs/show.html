@@ -38,29 +38,30 @@
     </div>
   </div>
 </div> -->
-
-<div class="container" ng-controller='CommentsController'>
-  <div class="row">
-    <div class="col-sm-6 col-md-4" ng-repeat="comment in all" >
-      <div class="thumbnail">
-        <p>{{comment.comment}}</p>
-        <p>{{comment.user_id}}</p>
+<div ng-controller='CommentsController'>
+  <div class="container" >
+    <div class="row">
+      <div class="col-sm-6 col-md-4" ng-repeat="comment in all" >
+        <div class="thumbnail">
+          <p><i>{{comment.comment}}</i></p> </br>
+          <p><strong>posted by: </strong>{{comment.user_id.local.username}}</p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="container" ng-show="current_user">
-  <div  class="row">
-    <div class="col-sm-6 col-md-4">
-      <div class="thumbnail">
-        <form>
-          <fieldset class="form-group">
-            <label for="comment">Your Comment</label>
-            <textarea class="form-control" rows="3"></textarea>
-          </fieldset>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+  <div class="container" ng-show="current_user">
+    <div  class="row">
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <form ng-submit='addComment()'>
+            <fieldset class="form-group">
+              <label for="comment">Your Comment</label>
+              <textarea class="form-control" rows="3" ng-model="newComment"></textarea>
+            </fieldset>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>

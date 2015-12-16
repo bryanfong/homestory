@@ -19,6 +19,11 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
       url: "/designs/:id",
       templateUrl: "/templates/designs/show.html"
     })
+    .state('new', {
+      url: "/new",
+      templateUrl: "/templates/designs/new.html",
+      controller: 'DesignsController'
+    })
     .state('bookmarks', {
       url: '/bookmarks',
       templateUrl: '/templates/bookmarks/index.html',

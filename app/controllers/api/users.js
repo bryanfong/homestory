@@ -17,53 +17,55 @@ function authenticatedUser(req, res, next) {
   }
 }
 
-// //INDEX
-// router.get('/users', function (req, res, next){
-//   User.find({}, function(err, users){
-//     if (err) res.json({message : err})
-//     res.json(users);
-//   })
-// });
+//Please start comments out below
 
-// //SHOW
-// router.get('/users/:id', function(req, res, next){
-//   var userId = req.params.id;
-//   User.findById(userId, function(err, user){
-//     if (err) res.json({message : err})
-//       res.json(user);
-//   })
-// });
+//INDEX
+router.get('/users', function (req, res, next){
+  User.find({}, function(err, users){
+    if (err) res.json({message : err})
+    res.json(users);
+  })
+});
 
-// // //POST
-// router.post('/users', function(req, res, next){
-//   var userParams = req.body.user;
+//SHOW
+router.get('/users/:id', function(req, res, next){
+  var userId = req.params.id;
+  User.findById(userId, function(err, user){
+    if (err) res.json({message : err})
+      res.json(user);
+  })
+});
 
-//   User.create(userParams, function(err, user){
-//     if (err) res.json({message: err})
-//       res.json({user : user})
-//   })
-// });
+// //POST
+router.post('/users', function(req, res, next){
+  var userParams = req.body.user;
 
-// // //PUT
-// router.put('/users/:id', function (req, res){
-//   User.findByIdAndUpdate(req.params.id, req.body.user,function (err, users){
-//     if (err) {
-//       res.json({message: "There was an error with your GET request " + err});
-//     } else {
-//       res.json({message: "ok" });
-//     }
-//   });
-// })
+  User.create(userParams, function(err, user){
+    if (err) res.json({message: err})
+      res.json({user : user})
+  })
+});
 
-// // DELETE
-// router.delete('/users/:id', function(req, res, next){
-//   var userId = req.params.id;
+// //PUT
+router.put('/users/:id', function (req, res){
+  User.findByIdAndUpdate(req.params.id, req.body.user,function (err, users){
+    if (err) {
+      res.json({message: "There was an error with your GET request " + err});
+    } else {
+      res.json({message: "ok" });
+    }
+  });
+})
 
-//   User.findById(userId, function(err,user){
-//     if (err) res.status(400).json({message : err});
-//     user.remove(function(err){
-//       if (err) res.json({message: err})
-//       res.status(200).json({message: "User has been removed"});
-//     });
-//   })
-// });
+// DELETE
+router.delete('/users/:id', function(req, res, next){
+  var userId = req.params.id;
+
+  User.findById(userId, function(err,user){
+    if (err) res.status(400).json({message : err});
+    user.remove(function(err){
+      if (err) res.json({message: err})
+      res.status(200).json({message: "User has been removed"});
+    });
+  })
+});

@@ -4,10 +4,11 @@ var Schema   = mongoose.Schema;
 
 var UserSchema = new Schema({
   local: {
-    full_name:     { type: String },
+    username: { type: String },
     email:    { type: String },
     password: { type: String }
   },
+
   fb: {
     id: String,
     access_token: String,
