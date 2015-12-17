@@ -10,6 +10,7 @@ body {
 }
 
 .main_title{
+  font-family: 'Dosis', sans-serif;
   text-align: center;
   margin: 3px;
   color: white;
@@ -21,4 +22,12 @@ body {
   border-color: #DF8484;
   width: 40%;
   color: white;
+}
+
+strong{
+  font-family: 'Oswald', sans-serif;
+}
+
+label{
+  font-family: 'Oswald', sans-serif;
 }
