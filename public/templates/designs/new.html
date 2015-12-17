@@ -1,35 +1,45 @@
 <nav-bar></nav-bar>
 
-<h3>Upload your home design photos</h3>
+<div class="title_background">
+<h3 class="main_title">Upload your home design</h3>
+</div>
 
-<form ng-submit='addDesign()'>
-  <fieldset class="form-group">
-    <label for="property_name">Property Name</label>
-    <input type="text" class="form-control" ng-model='newDesign.property_name'>
-  </fieldset>
-  <fieldset class="form-group">
-    <label for="apartment_size">Apartment Size</label>
-    <select class="form-control" ng-model='newDesign.apartment_size'>
-      <option>Less than 1000 square feet</option>
-      <option>1000 - 2000 square feet</option>
-      <option>More than 2000 square feet</option>
-    </select>
-  </fieldset>
-  <fieldset class="form-group">
-    <label for="description">Description</label>
-    <textarea class="form-control" rows="3" ng-model='newDesign.description'></textarea>
-  </fieldset>
-  <fieldset class="form-group">
-    <label for="budget">Budget</label>
-    <select class="form-control" ng-model='newDesign.budget'>
-      <option>Less than HKD $100,000</option>
-      <option>HKD $100,000 - HKD $500,000</option>
-      <option>HKD $500,000 or more</option>
-    </select>
-  </fieldset>
-  <fieldset class="form-group">
-    <label for="image_url">Image Link</label>
-    <input type="text" class="form-control"  ng-model='newDesign.image_url'>
-  </fieldset>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<div class="container" >
+  <div class="row">
+      <div class="thumbnail">
+        <div class="caption">
+          <form ng-submit='addDesign()'>
+            <fieldset class="form-group">
+              <label for="property_name">Property Name</label>
+              <input type="text" class="form-control" ng-model='newDesign.property_name'>
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="apartment_size">Apartment Size</label>
+              <select class="form-control" ng-model='newDesign.apartment_size'>
+                <option>Less than 1000 square feet</option>
+                <option>1000 - 2000 square feet</option>
+                <option>More than 2000 square feet</option>
+              </select>
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="description">Description</label>
+              <textarea class="form-control" rows="3" ng-model='newDesign.description'></textarea>
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="budget">Budget</label>
+              <select class="form-control" ng-model='newDesign.budget'>
+                <option>Less than HKD $100,000</option>
+                <option>HKD $100,000 - HKD $500,000</option>
+                <option>HKD $500,000 or more</option>
+              </select>
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="image_url">Image Link</label>
+              <input type="text" class="form-control"  ng-model='newDesign.image_url'>
+            </fieldset>
+            <button type="submit" class="btn btn-default  center-block actionButton">Submit</button>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>

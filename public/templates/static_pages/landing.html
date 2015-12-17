@@ -1,10 +1,10 @@
 <nav-bar></nav-bar>
 
-<div class = "container" ui-view>
-  <div class = "row">
+<div class = "container-fluid" ui-view>
+  <div class = "row row-centered">
 
     <!-- Slider -->
-    <div class="col-sm-8 col-md-8 col-lg-7" >
+    <div class="col-sm-12 col-md-6 col-lg-6" id="carouselContainer" >
       <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -12,6 +12,7 @@
           <li data-target="#carousel-example-generic" data-slide-to="1"></li>
           <li data-target="#carousel-example-generic" data-slide-to="2"></li>
         </ol>
+
 
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
@@ -35,29 +36,33 @@
       </div>
     </div>
 
-    <!-- Search Form -->
-    <h3>Find design idea for your home</h3>
-    <form ng-submit= 'goToSearch()'>
-      <fieldset class="form-group">
-        <label for="appartment_size">Apartment Size (Square Feet)</label>
-        <select class="form-control" ng-model="searchParams.apartment_size">
-          <option ng-repeat = "design in all">{{design.apartment_size}}</option>
-        </select>
-      </fieldset>
-      <fieldset class="form-group" >
-        <label for="property_name">Property Name</label>
-        <select class="form-control" ng-model="searchParams.property_name">
-          <option ng-repeat="design in all">{{design.property_name}}</option>
-        </select>
-      </fieldset>
-      <fieldset class="form-group" >
-        <label for="budget">Budget</label>
-        <select class="form-control" ng-model="searchParams.budget">
-          <option ng-repeat = "design in all">{{design.budget}}</option>
-        </select>
-      </fieldset>
-      <button type="submit" class="btn btn-primary">Search</button>
-    </form>
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <!-- Search Form -->
+      <div class="title_background">
+      <h3 class="main_title">Find design idea for your home</h3>
+      </div>
+      <form ng-submit= 'goToSearch()' id="searchForm">
+        <fieldset class="form-group">
+          <label for="appartment_size">Apartment Size (Square Feet)</label>
+          <select class="form-control" ng-model="searchParams.apartment_size">
+            <option ng-repeat = "design in all">{{design.apartment_size}}</option>
+          </select>
+        </fieldset>
+        <fieldset class="form-group" >
+          <label for="property_name">Property Name</label>
+          <select class="form-control" ng-model="searchParams.property_name">
+            <option ng-repeat="design in all">{{design.property_name}}</option>
+          </select>
+        </fieldset>
+        <fieldset class="form-group" >
+          <label for="budget">Budget</label>
+          <select class="form-control" ng-model="searchParams.budget">
+            <option ng-repeat = "design in all">{{design.budget}}</option>
+          </select>
+        </fieldset>
+        <button type="submit" class="btn btn-default center-block actionButton">Search</button>
+      </form>
+    </div>
 
   </div>
 </div>
