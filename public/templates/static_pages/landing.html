@@ -45,7 +45,9 @@
         <fieldset class="form-group">
           <label for="appartment_size">Apartment Size (Square Feet)</label>
           <select class="form-control" ng-model="searchParams.apartment_size">
-            <option ng-repeat = "design in all">{{design.apartment_size}}</option>
+            <option>Less than 1000 square feet</option>
+            <option>1000 - 2000 square feet</option>
+            <option>More than 2000 square feet</option>
           </select>
         </fieldset>
         <fieldset class="form-group" >
@@ -57,7 +59,9 @@
         <fieldset class="form-group" >
           <label for="budget">Budget</label>
           <select class="form-control" ng-model="searchParams.budget">
-            <option ng-repeat = "design in all">{{design.budget}}</option>
+            <option>Less than HKD $100,000</option>
+            <option>HKD $100,000 - HKD $500,000</option>
+            <option>HKD $500,000 or more</option>
           </select>
         </fieldset>
         <button type="submit" class="btn btn-default center-block actionButton">Search</button>
