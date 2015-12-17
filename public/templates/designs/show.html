@@ -10,7 +10,7 @@
   <div class="container" >
     <div class="row">
       <div>
-        <div class="thumbnail">
+        <div class="thumbnail showContainer">
           <img ng-src="{{design.image_url}}">
           <div class="caption">
             <p><strong>Property name</p></strong>
@@ -36,7 +36,7 @@
   <div class="container" ng-show="current_user">
     <div  class="row">
       <div >
-        <div class="thumbnail">
+        <div class="thumbnail showContainer">
           <form ng-submit='addComment()' class="caption">
             <fieldset class="form-group">
               <label for="comment">Your Comment</label>
@@ -56,7 +56,7 @@
   <div class="container" >
     <div class="row">
       <div ng-repeat="comment in all">
-        <div class="thumbnail">
+        <div class="thumbnail showContainer">
           <div class="caption">
             <p><i>{{comment.comment}}</i></p> </br>
             <p><strong>posted by: </strong>{{comment.user_id.local.username}}</p>
